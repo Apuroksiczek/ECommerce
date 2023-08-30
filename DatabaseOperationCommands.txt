@@ -1,0 +1,4 @@
+AddMigration:
+dotnet ef migrations add Initial --project Infrastructure --startup-project Api --output-dir Data/Migrations
+
+
