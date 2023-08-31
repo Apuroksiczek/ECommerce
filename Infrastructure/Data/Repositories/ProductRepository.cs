@@ -5,18 +5,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Data.Repositories
 {
-    public class ProductRepository : IProductRepository
+    public class ProductRepository : GenericRepository<Product>, IProductRepository
     {
-        private readonly StoreContext _context;
-
-        public ProductRepository(StoreContext context)
+        public ProductRepository(StoreContext dbContext) : base(dbContext)
         {
-            _context = context;
         }
 
         public async Task<IReadOnlyList<Product>> GetAllProductsAsync()
         {
-            return await _context.Products
+            return await _entities
                 .Include(p => p.ProductBrand)
                 .Include(p => p.ProductType)
                 .ToListAsync();
@@ -24,7 +21,7 @@ namespace Infrastructure.Data.Repositories
 
         public async Task<Product> GetProductByIdAsync(int id)
         {
-            return await _context.Products
+            return await _entities
                 .Include(p => p.ProductBrand)
                 .Include(p => p.ProductType)
                 .FirstOrDefaultAsync(x => x.Id == id);
@@ -32,12 +29,12 @@ namespace Infrastructure.Data.Repositories
 
         public async Task<IReadOnlyList<ProductBrand>> GetProductsBrandsAsync()
         {
-            return await _context.ProductBrands.ToListAsync();
+            return await _dbContext.ProductBrands.ToListAsync();
         }
 
         public async Task<IReadOnlyList<ProductType>> GetProductsTypesAsync()
         {
-            return await _context.ProductTypes.ToListAsync();
+            return await _dbContext.ProductTypes.ToListAsync();
         }
     }
 }
