@@ -34,7 +34,7 @@ namespace ECommerce.Controllers
         [HttpGet]
         public async Task<ActionResult<Pagination<ProductToReturnDto>>> GetProducts([FromQuery] ProductSpecParams productParams)
         {
-            var spec = new ProductsWithBrandsAndTyepsSpecification(productParams);
+            var spec = new ProductsWithBrandsAndTypesSpecification(productParams);
 
             var countspec = new ProductWithFiltersForCountSpecification(productParams);
 
@@ -57,7 +57,7 @@ namespace ECommerce.Controllers
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
         public async Task<ActionResult<ProductToReturnDto>> GetProduct(int id)
         {
-            var spec = new ProductsWithBrandsAndTyepsSpecification(id);
+            var spec = new ProductsWithBrandsAndTypesSpecification(id);
 
             var product = await _productRepository.GetEntityWithSpec(spec);
 

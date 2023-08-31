@@ -3,10 +3,11 @@ using ECommerce.Entities;
 
 namespace Core.Specyfications
 {
-    public class ProductsWithBrandsAndTyepsSpecification : BaseSpecification<Product>
+    public class ProductsWithBrandsAndTypesSpecification : BaseSpecification<Product>
     {
-        public ProductsWithBrandsAndTyepsSpecification(ProductSpecParams productParams)
+        public ProductsWithBrandsAndTypesSpecification(ProductSpecParams productParams)
             : base(x =>
+                (string.IsNullOrEmpty(productParams.Search) || x.Name.ToLower().Contains(productParams.Search)) &&
                 (!productParams.BrandId.HasValue || x.ProductBrandId == productParams.BrandId) &&
                 (!productParams.TypeId.HasValue || x.ProductTypeId == productParams.TypeId)
             )
@@ -36,7 +37,7 @@ namespace Core.Specyfications
             }
         }
 
-        public ProductsWithBrandsAndTyepsSpecification(int id) : base(x => x.Id == id)
+        public ProductsWithBrandsAndTypesSpecification(int id) : base(x => x.Id == id)
         {
             AddInclude(p => p.ProductBrand);
             AddInclude(p => p.ProductType);

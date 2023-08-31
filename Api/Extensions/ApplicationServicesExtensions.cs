@@ -38,6 +38,14 @@ namespace Api.Extensions
                 };
             });
 
+            services.AddCors(opt =>
+            {
+                opt.AddPolicy("CorsPolicy", policy =>
+                {
+                    policy.AllowAnyHeader().AllowAnyHeader().WithOrigins("https://localhost:4200");
+                });
+            });
+
             return services;
         }
     }
