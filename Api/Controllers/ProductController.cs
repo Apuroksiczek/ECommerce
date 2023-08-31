@@ -30,9 +30,13 @@ namespace ECommerce.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Product>>> GetProducts()
+        public async Task<ActionResult<List<Product>>> GetProducts(
+            string sort,
+            int? brandId,
+            int? typeId
+            )
         {
-            var spec = new ProductsWithBrandsAndTyepsSpecification();
+            var spec = new ProductsWithBrandsAndTyepsSpecification(sort, brandId, typeId);
 
             var products = await _productRepository.ListAsync(spec);
 
