@@ -1,6 +1,5 @@
 ﻿using Api.Dtos;
 using AutoMapper;
-using AutoMapper.Execution;
 using ECommerce.Entities;
 
 namespace Api.Helpers

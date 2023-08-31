@@ -1,6 +1,4 @@
-﻿using ECommerce.Entities;
-
-namespace Api.Dtos
+﻿namespace Api.Dtos
 {
     public class ProductToReturnDto
     {
