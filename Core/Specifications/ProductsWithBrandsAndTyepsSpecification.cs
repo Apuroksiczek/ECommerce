@@ -1,24 +1,25 @@
-﻿using ECommerce.Entities;
+﻿using Core.Specifications;
+using ECommerce.Entities;
 
 namespace Core.Specyfications
 {
     public class ProductsWithBrandsAndTyepsSpecification : BaseSpecification<Product>
     {
-        public ProductsWithBrandsAndTyepsSpecification(string sort, int? brandId, int? typeId)
+        public ProductsWithBrandsAndTyepsSpecification(ProductSpecParams productParams)
             : base(x =>
-                (!brandId.HasValue || x.ProductBrandId == brandId) &&
-                (!typeId.HasValue || x.ProductTypeId == typeId)
+                (!productParams.BrandId.HasValue || x.ProductBrandId == productParams.BrandId) &&
+                (!productParams.TypeId.HasValue || x.ProductTypeId == productParams.TypeId)
             )
 
         {
             AddInclude(p => p.ProductBrand);
             AddInclude(p => p.ProductType);
-
             AddOrderBy(x => x.Name);
+            ApplyPaging(productParams.PageSize * (productParams.PageIndex - 1), productParams.PageSize);
 
-            if (!string.IsNullOrEmpty(sort))
+            if (!string.IsNullOrEmpty(productParams.Sort))
             {
-                switch (sort)
+                switch (productParams.Sort)
                 {
                     case "priceAsc":
                         AddOrderBy(p => p.Price);

@@ -17,6 +17,11 @@ namespace Infrastructure.Data.Repositories
             _entities = _dbContext.Set<T>();
         }
 
+        public async Task<int> CountAsync(ISpecification<T> specification)
+        {
+            return await ApplySpecification(specification).CountAsync();
+        }
+
         public async Task<IEnumerable<T>> GetAll()
         {
             return await _entities.ToListAsync();
