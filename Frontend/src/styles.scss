@@ -6,6 +6,11 @@
 /* Importing Datepicker SCSS file. */
 @import "node_modules/ngx-bootstrap/datepicker/bs-datepicker";
 
+
 @import "../node_modules/font-awesome/css/font-awesome.css";
 
 @import 'ngx-toastr/toastr';
+
+label.xng-breadcrumb-trail {
+    color: orange;
+}

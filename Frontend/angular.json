@@ -30,6 +30,8 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/font-awesome/css/font-awesome.min.css",
+              "node_modules/ngx-spinner/animations/timer.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -112,6 +114,7 @@
             ],
             "styles": [
               "node_modules/font-awesome/css/font-awesome.min.css",
+              "node_modules/ngx-spinner/animations/ball-scale-multiple.css",
               "src/styles.scss"
             ],
             "scripts": []

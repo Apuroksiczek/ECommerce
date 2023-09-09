@@ -5,20 +5,31 @@ import { RouterModule } from '@angular/router';
 import { ToastrModule } from 'ngx-toastr';
 import { TestErrorComponent } from './test-error/test-error.component';
 import { ServerErrorComponent } from './server-error/server-error.component';
+import { SectionHeaderComponent } from './section-header/section-header.component';
+import { BreadcrumbModule } from 'xng-breadcrumb';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
     NavBarComponent,
     TestErrorComponent,
-    ServerErrorComponent
+    ServerErrorComponent,
+    SectionHeaderComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
-    ToastrModule.forRoot() 
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true
+    }),
+    BreadcrumbModule,
+    NgxSpinnerModule
   ],
   exports: [
-    NavBarComponent
+    NavBarComponent,
+    SectionHeaderComponent,
+    NgxSpinnerModule
   ]
 })
 export class CoreModule { }
