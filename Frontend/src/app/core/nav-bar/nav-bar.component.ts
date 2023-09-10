@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { BasketServiceService } from 'src/app/basket/basketService.service';
+import { BasketItem } from 'src/app/shared/models/basketItem';
 
 @Component({
   selector: 'app-nav-bar',
@@ -7,7 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavBarComponent implements OnInit {
 
-  constructor() { }
+  constructor(public basketService: BasketServiceService) { }
+
+  getCount(items: BasketItem[])
+  {
+    return items.reduce((sum, item) => sum + item.quantity, 0);
+  }
 
   ngOnInit() {
   }

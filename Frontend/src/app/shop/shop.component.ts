@@ -32,7 +32,6 @@ export class ShopComponent implements OnInit {
 
   ngOnInit(): any {
     this.getProducts();
-    console.log("XD");
     this.getBrands();
     this.getTypes();
   }
